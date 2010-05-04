@@ -27,13 +27,12 @@
 **
 **
 -->
-<project name="myPluginName" default="dist" basedir=".">
+<project name="undelete" default="dist" basedir=".">
 
 	<!-- enter the SVN commit message -->
-	<property name="commit.message" value="Commit message" />
+	<property name="commit.message" value="Changed the constructor signature of the plugin main class" />
 	<!-- enter the *lowest* JOSM version this plugin is currently compatible with -->
-	<property name="plugin.main.version" value="" />
-
+	<property name="plugin.main.version" value="2830" />
 
 	<!--
       ************************************************
@@ -76,10 +75,7 @@
     **********************************************************
     -->
 	<target name="dist" depends="compile,revision">
-		<echo message="creating ${ant.project.name}.jar ... "/>
-		<copy todir="${plugin.build.dir}/resources">
-			<fileset dir="resources"/>
-		</copy>
+		<echo message="creating ${plugin.jar.name} ... "/>
 		<copy todir="${plugin.build.dir}/images">
 			<fileset dir="images"/>
 		</copy>
@@ -99,11 +95,11 @@
         ************************************************
     -->
 			<manifest>
-				<attribute name="Author" value="..."/>
-				<attribute name="Plugin-Class" value="..."/>
+				<attribute name="Author" value="Nakor"/>
+				<attribute name="Plugin-Class" value="Undelete.Undelete"/>
 				<attribute name="Plugin-Date" value="${version.entry.commit.date}"/>
-				<attribute name="Plugin-Description" value="..."/>
-				<attribute name="Plugin-Link" value="..."/>
+				<attribute name="Plugin-Description" value="Allows undeleting object from OSM database"/>
+				<attribute name="Plugin-Link" value="http://wiki.openstreetmap.org/wiki/JOSM/Plugins/Undelete"/>
 				<attribute name="Plugin-Mainversion" value="${plugin.main.version}"/>
 				<attribute name="Plugin-Version" value="${version.entry.commit.revision}"/>
 			</manifest>
@@ -153,7 +149,6 @@
 		</condition>
 		<copy file="${plugin.jar}" todir="${josm.plugins.dir}"/>
 	</target>
-
 
 	<!--
 	************************** Publishing the plugin *********************************** 
